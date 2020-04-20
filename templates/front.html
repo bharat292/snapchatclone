@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{%block content %}
+	<video autoplay id='vidDisplay'>
+		No video support in your browser
+	</video> 
+	<script type='text/javascript'>
+		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia || navigator.mozGetUserMedia;
+
+			if(navigator.getUserMedia){
+				navigator.getUserMedia({video: true},handleVideo,videoError);
+			}
+			function handleVideo(stream){
+				 console.log(stream)
+				document.querySelector('#vidDisplay').srcObject = stream
+			}
+			function videoError(e){
+				alert('There has some problem.. ')
+			}
+	</script>
+{% endblock %}
+
+
